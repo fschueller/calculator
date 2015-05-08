@@ -1,0 +1,39 @@
+<br>
+<% if @calculations.any? %>
+  <table class="table table-hover table-bordered">
+    <tr>
+    	<th>ID</th>
+    	<th>Equation</th>
+    	<th>Result</th>
+    	<th>Timestamp</th>
+    </tr>
+    <% @calculations.each do |calculation| %>
+    	<tr>
+    		<td><%= calculation.id %></td>
+    		<td><%= calculation.equation %></td>
+    		<td><%= calculation.result %></td>
+    		<td><%= time_ago_in_words calculation.created_at %> ago</td>
+    	</tr>
+    <% end %>
+  </table>
+  <h5 align = center>
+		<%= paginate @calculations %>
+	</h5>
+<% end %>
+<p class="text-center", class="lead">Please enter your equation!</p>
+<br>
+<%= form_tag(calculator_index_path, method: "post", class: "form-inline") do %>
+	<div class="form-group">
+		<div class="input-group">
+			<div class="input-group-addon">Equation:</div>
+		  <%= text_field_tag(:q, "No alphabetical characters and spaces.", class: "form-control") %>
+	  	<div class="input-group-btn">
+	  		<%= submit_tag("Evaluate", class: "btn btn-default") %>
+	  	</div>
+		</div>
+ 	</div>
+<% end %>
+
+<!-- <span class="help-block">No alphabetical characters and spaces.</span> -->
+
+
