@@ -1,20 +1,17 @@
 <br>
 <% if @calculations.any? %>
   <table class="table table-hover table-bordered">
-    <tr>
-    	<th>ID</th>
-    	<th>Equation</th>
-    	<th>Result</th>
-    	<th>Timestamp</th>
-    </tr>
-    <% @calculations.each do |calculation| %>
-    	<tr>
-    		<td><%= calculation.id %></td>
-    		<td><%= calculation.equation %></td>
-    		<td><%= calculation.result %></td>
-    		<td><%= time_ago_in_words calculation.created_at %> ago</td>
-    	</tr>
-    <% end %>
+  	<thead>
+	    <tr>
+	    	<th>ID</th>
+	    	<th>Equation</th>
+	    	<th>Result</th>
+	    	<th>Timestamp</th>
+	    </tr>
+	  </thead>
+	 	<tbody id="calculations">
+    	<%= render @calculations %>
+    </tbody>
   </table>
   <h5 align = center>
 		<%= paginate @calculations %>
@@ -22,7 +19,7 @@
 <% end %>
 <p class="text-center", class="lead">Please enter your equation!</p>
 <br>
-<%= form_tag(calculator_index_path, method: "post", class: "form-inline") do %>
+<%= form_tag(calculator_index_path, method: "post", remote: true, class: "form-inline") do %>
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon">Equation:</div>

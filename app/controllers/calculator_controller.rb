@@ -9,7 +9,7 @@ class CalculatorController < ApplicationController
   def create
   	@calculation = Calculation.create(equation: params[:q]) # creates calculation object in database
 	flash[:error] ="No not that. No alphabetical characters and avoid spaces, please!" unless @calculation.persisted?
-  	redirect_to new_calculator_path	
+  	redirect_to new_calculator_path	unless request.xhr?
   end
 
   def enter
