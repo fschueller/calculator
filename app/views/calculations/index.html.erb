@@ -13,13 +13,15 @@
     	<%= render @calculations %>
     </tbody>
   </table>
-  <h5 align = center>
-		<%= paginate @calculations %>
-	</h5>
+  <div id="paginator">
+  	<h5 align = center>
+			<%= paginate @calculations, remote: true %>
+		</h5>
+	</div>
 <% end %>
 <p class="text-center", class="lead">Please enter your equation!</p>
 <br>
-<%= form_tag(calculator_index_path, method: "post", remote: true, class: "form-inline") do %>
+<%= form_tag(calculations_path, method: "post", remote: true, authenticity_token: true, class: "form-inline") do %>
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon">Equation:</div>
@@ -30,7 +32,17 @@
 		</div>
  	</div>
 <% end %>
-
-<!-- <span class="help-block">No alphabetical characters and spaces.</span> -->
+<br>
+<h4>Delete Equation: </h4>
+<%= form_tag(calculation_path(:id), method: "delete", class: "form-inline") do %>
+	<div class="form-group">
+		<div class="input-group">
+			<%= text_field_tag(:id, "ID of equation", class: "form-control") %>
+			<div class="input-group-btn">
+				<%= submit_tag("Delete", class: "btn btn-danger") %>
+			</div>
+		</div>
+	</div>
+<% end %>
 
 
