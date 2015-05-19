@@ -1,6 +1,7 @@
-<tr>
+<tr id="<%= dom_id calculation %>">
 	<td><%= calculation.id %></td>
 	<td><%= calculation.equation %></td>
 	<td><%= calculation.result %></td>
 	<td><%= time_ago_in_words calculation.created_at %> ago</td>
+	<td><%= button_to "Delete", calculation, method: :delete, remote: true, class: "btn btn-danger" %></td>
 </tr>

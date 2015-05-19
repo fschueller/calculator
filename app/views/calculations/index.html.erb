@@ -21,6 +21,7 @@
 <% end %>
 <p class="text-center", class="lead">Please enter your equation!</p>
 <br/>
+
 <%= form_for(@new_calculation, remote: true, authenticity_token: true, class: "form-inline" ) do |f| %>
 	<div class="form-group">
 		<div class="input-group">
@@ -31,18 +32,6 @@
 		  </div>
 		</div>
  	</div>
-<% end %>
-<br/>
-<h4>Delete Equation: </h4>
-<%= form_tag(calculation_path(:id), method: "delete", class: "form-inline") do %>
-	<div class="form-group">
-		<div class="input-group">
-			<%= text_field_tag(:id, "ID of equation", class: "form-control") %>
-			<div class="input-group-btn">
-				<%= submit_tag("Delete", class: "btn btn-danger") %>
-			</div>
-		</div>
-	</div>
 <% end %>
 
 

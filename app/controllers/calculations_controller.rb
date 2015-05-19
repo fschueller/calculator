@@ -12,8 +12,7 @@ class CalculationsController < ApplicationController
 
   def destroy 
     @calculation = Calculation.find(params[:id])
-    flash[:error] = "Record not found in database. Try again." unless @calculation.exists?
-    @calculation.delete
-    redirect_to index_calculator_path
+    @calculation.destroy!
+    redirect_to calculations_path unless request.xhr?
   end
 end
