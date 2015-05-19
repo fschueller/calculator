@@ -1,0 +1,11 @@
+<%= form_for(@new_calculation, remote: true, authenticity_token: true, class: "form-inline" ) do |f| %>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon">Equation:</div>
+		 			<%= f.text_field(:equation, class: "form-control") %>
+		  	<div class="input-group-btn">
+					<%= f.submit("Evaluate", class: "btn btn-default") %>
+		  	</div>
+			</div>
+ 		</div>
+	<% end %>

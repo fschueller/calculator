@@ -1,37 +1,27 @@
 <br/>
-<% if @calculations.any? %>
-  <table class="table table-hover table-bordered">
-  	<thead>
-	    <tr>
-	    	<th>ID</th>
-	    	<th>Equation</th>
-	    	<th>Result</th>
-	    	<th>Timestamp</th>
-	    </tr>
-	  </thead>
-	 	<tbody id="calculations">
-    	<%= render @calculations %>
-    </tbody>
-  </table>
-  <div id="paginator">
-  	<h5 align = center>
-			<%= paginate @calculations, remote: true %>
-		</h5>
-	</div>
-<% end %>
+<table class="table table-hover table-bordered">
+	<thead>
+    <tr>
+    	<th>ID</th>
+    	<th>Equation</th>
+    	<th>Result</th>
+    	<th>Timestamp</th>
+    </tr>
+  </thead>
+ 	<tbody id="calculations">
+  	<%= render @calculations %>
+  </tbody>
+</table>
+<div id="paginator">
+	<h5 align = center>
+		<%= paginate @calculations, remote: true %>
+	</h5>
+</div>
+
 <p class="text-center", class="lead">Please enter your equation!</p>
 <br/>
 
-<%= form_for(@new_calculation, remote: true, authenticity_token: true, class: "form-inline" ) do |f| %>
-	<div class="form-group">
-		<div class="input-group">
-			<div class="input-group-addon">Equation:</div>
-		 	<%= f.text_field(:equation, class: "form-control") %>
-		  <div class="input-group-btn">
-				<%= f.submit("Evaluate", class: "btn btn-default") %>
-		  </div>
-		</div>
- 	</div>
-<% end %>
-
+<div id="equation_form">
+	<%= render 'equation_form' %>
+</div>
 
