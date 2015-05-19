@@ -1,4 +1,4 @@
-<br>
+<br/>
 <% if @calculations.any? %>
   <table class="table table-hover table-bordered">
   	<thead>
@@ -20,19 +20,19 @@
 	</div>
 <% end %>
 <p class="text-center", class="lead">Please enter your equation!</p>
-<br>
-<%= form_tag(calculations_path, method: "post", remote: true, authenticity_token: true, class: "form-inline") do %>
+<br/>
+<%= form_for(@new_calculation, remote: true, authenticity_token: true, class: "form-inline" ) do |f| %>
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon">Equation:</div>
-		  <%= text_field_tag(:q, "No alphabetical characters and spaces.", class: "form-control") %>
-	  	<div class="input-group-btn">
-	  		<%= submit_tag("Evaluate", class: "btn btn-default") %>
-	  	</div>
+		 	<%= f.text_field(:equation, class: "form-control") %>
+		  <div class="input-group-btn">
+				<%= f.submit("Evaluate", class: "btn btn-default") %>
+		  </div>
 		</div>
  	</div>
 <% end %>
-<br>
+<br/>
 <h4>Delete Equation: </h4>
 <%= form_tag(calculation_path(:id), method: "delete", class: "form-inline") do %>
 	<div class="form-group">
