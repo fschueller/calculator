@@ -3,7 +3,7 @@
 	<td><%= calculation.equation %></td>
 	<td><%= calculation.result %></td>
 	<td><%= time_ago_in_words calculation.created_at %> ago</td>
-	<td><%= button_to calculation, confirm: "Sure you want to delete?", method: :delete, remote: true, class: "btn btn-danger" do %>
+	<td id="delete"><%= button_to calculation, method: :delete, remote: true, class: "btn btn-danger", data: { confirm: "Are you sure?"} do %>
 					<i class="glyphicon glyphicon-trash"></i>
 			<% end %>
 	</td>
