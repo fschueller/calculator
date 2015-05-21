@@ -36,6 +36,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'bootstrap_form'
 gem 'simple_form'
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
 
 group :development, :test do
