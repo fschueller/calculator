@@ -3,7 +3,7 @@
 	<td><%= calculation.equation %></td>
 	<td><%= calculation.result %></td>
 	<td><%= time_ago_in_words calculation.created_at %> ago</td>
-	<td id="delete"><%= button_to calculation, method: :delete, remote: true, class: "btn btn-danger", data: { title: "Are you sure", confirm: "This will permanently delete this record in database.", commit: "Sure I am", cancel: "Now that I think about it..."} do %>
+	<td class="delete"><%= button_to calculation, method: :delete, remote: true, params: { :page => @current_page }, class: "btn btn-danger", data: { title: "Are you sure", confirm: "This will permanently delete this record in database.", commit: "Sure I am", cancel: "Now that I think about it..."} do %>
 					<i class="glyphicon glyphicon-trash"></i>
 			<% end %>
 	</td>

@@ -1,4 +1,6 @@
 class CalculationsController < ApplicationController
+  before_filter :current_page
+
   def index
   	@calculations = Calculation.order("created_at" => :desc).page(params[:page]).per(10)
     @new_calculation = Calculation.new
@@ -35,5 +37,10 @@ class CalculationsController < ApplicationController
     else
       redirect_to calculations_path
     end
+  end
+
+  private
+  def current_page
+    @current_page = params[:page]
   end
 end
