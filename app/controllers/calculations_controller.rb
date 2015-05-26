@@ -1,8 +1,8 @@
 class CalculationsController < ApplicationController
   before_filter :current_page
+  before_filter :load_calculations
 
   def index
-  	@calculations = Calculation.order("created_at" => :desc).page(params[:page]).per(10)
     @new_calculation = Calculation.new
 
     if request.xhr?
@@ -18,7 +18,6 @@ class CalculationsController < ApplicationController
     else
       flash[:error] = "No not that. No alphabetical characters and avoid spaces, please!"
     end
-    @calculations = Calculation.order("created_at" => :desc).page(1).per(10)
 
     if request.xhr?
       render "update_table"
@@ -30,7 +29,6 @@ class CalculationsController < ApplicationController
   def destroy 
     @calculation = Calculation.find(params[:id])
     @calculation.destroy!
-    @calculations = Calculation.order("created_at" => :desc).page(params[:page]).per(10)
     
     if request.xhr?
       render "update_table"
@@ -39,8 +37,13 @@ class CalculationsController < ApplicationController
     end
   end
 
-  private
+private
   def current_page
     @current_page = params[:page]
   end
+
+  def load_calculations
+    @calculations = Calculation.order("created_at" => :desc).page(params[:page]).per(10)
+  end
+
 end
