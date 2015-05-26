@@ -11,7 +11,11 @@ class CalculationsController < ApplicationController
 
   def create
   	@calculation = Calculation.create(equation: params[:calculation][:equation]) # creates calculation object in database
-	  flash[:error] ="No not that. No alphabetical characters and avoid spaces, please!" unless @calculation.persisted?
+    if @calculation.persisted?
+      flash.clear
+    else
+      flash[:error] = "No not that. No alphabetical characters and avoid spaces, please!"
+    end
     @calculations = Calculation.order("created_at" => :desc).page(1).per(10)
 
     if request.xhr?
@@ -24,7 +28,7 @@ class CalculationsController < ApplicationController
   def destroy 
     @calculation = Calculation.find(params[:id])
     @calculation.destroy!
-    @calculations = Calculation.order("created_at" => :desc).page(1).per(10)
+    @calculations = Calculation.order("created_at" => :desc).page(params[:page]).per(10)
     
     if request.xhr?
       render "update_table"

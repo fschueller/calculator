@@ -21,7 +21,12 @@
 <p class="text-center", class="lead">Please enter your equation!</p>
 <br/>
 
+<div class="error" id="error">
+  <% if flash[:error] %>
+    <%= flash[:error] %>
+  <% end %>
+</div>
 <div id="equation_form">
-	<%= render 'equation_form', new_calculation: @new_calculation %>
+  <%= render 'equation_form', new_calculation: @new_calculation %>
 </div>
 

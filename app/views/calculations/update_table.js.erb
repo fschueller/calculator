@@ -1,2 +1,3 @@
 $('#calculations').html('<%=j render(@calculations) %>');
 $('#paginator').html('<%=j paginate(@calculations, remote: true) %>');
+$('#error').html('<%=j flash[:error] %>'); 
