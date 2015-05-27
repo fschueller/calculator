@@ -20,15 +20,12 @@ RSpec.describe Calculation, type: :model do
 
 	  	calculation.equation = "(2+2.8)*3/4-5"
 	  	expect(calculation).to be_valid
-
 	  end
 
 
 	  it "should be saved to database" do
 	  	Calculation.create(equation: "2+2")
-
 	  	expect(Calculation.last.equation).to eq "2+2"
-
 	  end
 	end
 
@@ -39,16 +36,9 @@ RSpec.describe Calculation, type: :model do
   		expect(Calculation.last.result).to be_present
   	end
 
-
   	it "should be correct" do 
   		Calculation.create(equation: "2+2")
   		expect(Calculation.last.result).to eq 4
   	end
-
-  end
-
-  describe "result" do
-  	it "should be stored in database"
-  	it "should have presence validated"
   end
 end
