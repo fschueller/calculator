@@ -33,8 +33,18 @@ RSpec.describe Calculation, type: :model do
 	end
 
 	describe "evaluation" do
-  	it "should happen automatically"
-  	it "should be correct"
+  	it "should happen automatically" do
+  		Calculation.create(equation: "2+2")
+
+  		expect(Calculation.last.result).to be_present
+  	end
+
+
+  	it "should be correct" do 
+  		Calculation.create(equation: "2+2")
+  		expect(Calculation.last.result).to eq 4
+  	end
+
   end
 
   describe "result" do
