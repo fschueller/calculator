@@ -41,24 +41,66 @@ RSpec.describe CalculationsController, type: :controller do
 
 	end
 
-	# describe "POST #create"
-	# 	it "creates valid calculation" do
-	# 	end
+	describe "POST #create" do
 
-	# 	context "creates invalid calculation" do
-	# 		it "puts error" do
-	# 		end
-	# 	end
+		it "creates valid calculation" do
+			payload = { calculation: { equation: "2+2" } }
+			post :create, payload
+			expect(Calculation.last.equation).to eq "2+2"
+		end
 
-	# 	context "when xhr request" do
-	# 		it "renders partial" do
-	# 		end
-	# 	end
+		context "creates invalid calculation" do
+			it "puts error" do
+				payload = { calculation: { equation: "xyz"} }
+				post :create, payload
+				expect(flash[:error]).to be_present
+				expect(flash[:error]).to include("No not that. No alphabetical characters and avoid spaces, please!")
+			end
+		end
 
-	# 	context "when not xhr request" do
-	# 		it "redirects to index page" do
-	# 		end
-	# 	end
-	# end
+		context "when xhr request" do
+			it "renders partial" do
+				payload = { calculation: { equation: "2+2" } }
+				xhr :post, :create, payload 
+				expect(response).to render_template('update_table')
+			end
+		end
 
+		context "when not xhr request" do
+			it "redirects to index page" do
+				payload = { calculation: { equation: "2+2" } }
+				post :create, payload
+				expect(response).to redirect_to '/calculations'
+			end
+		end
+	 end
+
+	 describe "DELETE #destroy" do
+
+	 	let!(:calculation) { Calculation.create!(id: 2000, equation: "2+2") }
+
+	 	it "looks for calculation by id" do
+	 		expect(Calculation).to receive(:find).with(calculation.id.to_s).and_return(calculation)
+	 		delete :destroy, id: calculation.id
+	 	end
+
+	 	it "deletes calculation" do
+	 		delete :destroy, id: calculation.id
+	 		expect(Calculation.count).to eq 0
+	  end
+
+		context "when xhr request" do
+			it "renders partial" do 
+				xhr :delete, :destroy, id: calculation.id
+				expect(response).to render_template('update_table')
+			end
+		end
+
+		context "when not xhr request" do
+			it "redirects to index page" do
+				delete :destroy, id: calculation.id
+				expect(response).to redirect_to '/calculations'
+			end
+		end
+	 end
 end

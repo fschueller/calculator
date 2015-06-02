@@ -30,6 +30,7 @@ class CalculationsController < ApplicationController
     @calculation = Calculation.find(params[:id])
     @calculation.destroy!
     
+    
     if request.xhr?
       render "update_table"
     else
