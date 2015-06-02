@@ -43,15 +43,17 @@ RSpec.describe CalculationsController, type: :controller do
 
 	describe "POST #create" do
 
+		let(:payload) { { calculation: { equation: equation } } }
+		let(:equation) { "2+2" }
+
 		it "creates valid calculation" do
-			payload = { calculation: { equation: "2+2" } }
 			post :create, payload
-			expect(Calculation.last.equation).to eq "2+2"
+			expect(Calculation.last.equation).to eq equation
 		end
 
 		context "creates invalid calculation" do
+			let(:payload) { { calculation: { equation: "xyz"} } }
 			it "puts error" do
-				payload = { calculation: { equation: "xyz"} }
 				post :create, payload
 				expect(flash[:error]).to be_present
 				expect(flash[:error]).to include("No not that. No alphabetical characters and avoid spaces, please!")
@@ -60,7 +62,6 @@ RSpec.describe CalculationsController, type: :controller do
 
 		context "when xhr request" do
 			it "renders partial" do
-				payload = { calculation: { equation: "2+2" } }
 				xhr :post, :create, payload 
 				expect(response).to render_template('update_table')
 			end
@@ -68,7 +69,6 @@ RSpec.describe CalculationsController, type: :controller do
 
 		context "when not xhr request" do
 			it "redirects to index page" do
-				payload = { calculation: { equation: "2+2" } }
 				post :create, payload
 				expect(response).to redirect_to '/calculations'
 			end
