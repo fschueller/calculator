@@ -43,8 +43,8 @@ RSpec.describe CalculationsController, type: :controller do
 
 	describe "POST #create" do
 
-		let(:payload) { { calculation: { equation: equation } } }
 		let(:equation) { "2+2" }
+		let(:payload) { { calculation: { equation: equation } } }
 
 		it "creates valid calculation" do
 			post :create, payload
