@@ -6,6 +6,7 @@ RSpec.describe "calculations/index" do
 		it "checks for calculation table" do 
 			assign(:calculations, Calculation.page)
 			assign(:new_calculation, Calculation.new)
+			
 			html = Nokogiri::HTML.parse(render)
 
 			expect(html.css("tbody#calculations").any?).to be true
@@ -29,6 +30,7 @@ RSpec.describe "calculations/index" do
 	 		html = Nokogiri::HTML.parse(render)
 
 	 		buttons = html.css("div#paginator ul li a")
+	 		binding.pry
 	 		expect(buttons.map &:text).to match_array(
 	 		  ['« First', '‹ Prev', '…', '3', '4', '5', '6', '7', '8', '9', '10', '11', '…', 'Next ›', 'Last »' ]
 	 		)
@@ -41,7 +43,7 @@ RSpec.describe "calculations/index" do
 			assign(:new_calculation, Calculation.new)
 			html = Nokogiri::HTML.parse(render)
 
-			expect(html.css("div#paginator ul li a")).to be_present
+			expect(html.css("div#paginator ul li a")).to be_any
 		end 
 	end
 
