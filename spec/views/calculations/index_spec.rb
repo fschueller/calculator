@@ -16,6 +16,7 @@ RSpec.describe "calculations/index" do
 			13.times { |n| Calculation.create(equation: n.to_s)}
 			assign(:calculations, Calculation.page)
 			assign(:new_calculation, Calculation.new)
+
 			html = Nokogiri::HTML.parse(render)
 
 			expect(html.css("tbody#calculations tr").count).to eq Calculation.count
@@ -27,6 +28,7 @@ RSpec.describe "calculations/index" do
 	 		13.times { |n| Calculation.create(equation: n.to_s)}
 	 		assign(:calculations, Calculation.page(7).per(1))
 	 		assign(:new_calculation, Calculation.new)
+
 	 		html = Nokogiri::HTML.parse(render)
 
 	 		buttons = html.css("div#paginator ul li a")
@@ -40,6 +42,7 @@ RSpec.describe "calculations/index" do
 			13.times { |n| Calculation.create(equation: n.to_s)}
 			assign(:calculations, Calculation.page.per(10))
 			assign(:new_calculation, Calculation.new)
+
 			html = Nokogiri::HTML.parse(render)
 
 			expect(html.css("div#paginator ul li a")).to be_any
@@ -50,7 +53,9 @@ RSpec.describe "calculations/index" do
 		it "renders corresponding partial" do
 			assign(:calculations, Calculation.page)
 			assign(:new_calculation, Calculation.new)
+
 			html = Nokogiri::HTML.parse(render)
+			
 			expect(html.css("div#equation_form form")).to be_any
 		end
 		

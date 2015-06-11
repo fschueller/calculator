@@ -52,9 +52,12 @@ RSpec.describe CalculationsController, type: :controller do
 		end
 
 		context "creates invalid calculation" do
+
 			let(:payload) { { calculation: { equation: "xyz"} } }
+
 			it "puts error" do
 				post :create, payload
+				
 				expect(flash[:error]).to be_present
 				expect(flash[:error]).to include("No not that. No alphabetical characters and avoid spaces, please!")
 			end
