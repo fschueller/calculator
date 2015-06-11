@@ -30,7 +30,6 @@ RSpec.describe "calculations/index" do
 	 		html = Nokogiri::HTML.parse(render)
 
 	 		buttons = html.css("div#paginator ul li a")
-	 		binding.pry
 	 		expect(buttons.map &:text).to match_array(
 	 		  ['« First', '‹ Prev', '…', '3', '4', '5', '6', '7', '8', '9', '10', '11', '…', 'Next ›', 'Last »' ]
 	 		)
