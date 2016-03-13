@@ -1,28 +1,13 @@
-== README
+== Playground
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple calculator, polished with Twitter Bootstrap, solely for playground purposes.
 
-Things you may want to cover:
+It currently runs on:
 
-* Ruby version
+* Rails 4.2.1
 
-* System dependencies
+* Bootstrap + Sass
 
-* Configuration
+* Rspec for tests
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+and uses SQLite for its secret test deployment.
