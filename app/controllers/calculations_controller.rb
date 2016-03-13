@@ -6,7 +6,7 @@ class CalculationsController < ApplicationController
     @new_calculation = Calculation.new
 
     if request.xhr?
-      render "update_table"
+     render "update_table"
     end
 
   end
@@ -29,6 +29,7 @@ class CalculationsController < ApplicationController
   def destroy 
     @calculation = Calculation.find(params[:id])
     @calculation.destroy!
+    
     
     if request.xhr?
       render "update_table"
